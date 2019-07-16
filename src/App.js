@@ -1,8 +1,11 @@
 import React,{ Component } from 'react';
 import './App.css';
-import Header from './Header';
-import List from './List';
+
+import List from './Components/List';
 import axios from 'axios';
+
+//挂载 Mock
+import './mock/data.js';
 
 class App extends Component {
 	constructor(props){
@@ -17,6 +20,11 @@ class App extends Component {
 	componentDidMount(){
 		axios.get("/api/home").then((res)=>{
 			console.log(res)
+			this.setState(()=>{
+				return {
+					itemList:res.data.ageList
+				}
+			})
 		})
 	}
 	shouldComponentUpdate(){
@@ -25,7 +33,6 @@ class App extends Component {
   render(){
 		return (
 		  <div className="App">
-					<Header></Header>
 					<h1 className="bg-List">hello React</h1>
 					<label htmlFor="userName">聚焦input</label>
 					<input type="text" id="userName" value={this.state.inputVal} onChange={this.getVal.bind(this)} ref= { (input)=>{ this.input=input }}/>
