@@ -13,8 +13,12 @@ class Home extends Component {
 					<Link to="/about"><li>关于</li></Link>
 					<Link to="/contact"><li>联系</li></Link>
 				</ul>
+				<button onClick={this.toAbout.bind(this)}>关于</button>
 			</div>
 		)
+	}
+	toAbout(){
+		this.props.history.push("/about")
 	}
 }
 export default Home;
